@@ -188,9 +188,9 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
               
                     FSArray postags;
                     if (token.getPosTag()==null){                    	
-                    	postags = new FSArray (aJCas, JulesTools.DEFAULT_ADDITION_SIZE);
+                    	postags = new FSArray (aJCas, 1);
                     	try {
-							postags = JulesTools.addToFSArray(postags, pos);
+                    		postags.set(0, pos);
 						} catch (CASRuntimeException e) {
 							// TODO Auto-generated catch block
 							e.printStackTrace();
@@ -202,7 +202,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
                     }
                    
                     else {                    	
-                    	postags = JulesTools.addToFSArray(token.getPosTag(), pos);               
+                    	postags = JulesTools.addToFSArray(token.getPosTag(), pos, 1);               
                	
                     }
                     
