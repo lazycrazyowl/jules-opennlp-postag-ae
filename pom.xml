@@ -25,7 +25,7 @@
 		<dependency>
 			<groupId>de.julielab</groupId>
 			<artifactId>jules-utilities</artifactId>
-			<version>1.0</version>
+			<version>1.1.1</version>
     		</dependency>
 		<dependency>
 			<groupId>opennlp</groupId>

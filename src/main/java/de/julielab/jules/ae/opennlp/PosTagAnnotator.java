@@ -145,7 +145,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
                     POSTag pos = null;
                     
                     try {
-						pos = (POSTag) AnnotationTools.getAnnotationObject(aJCas, postagset);
+						pos = (POSTag) AnnotationTools.getAnnotationByClassName(aJCas, postagset);
 						pos.setBegin(token.getBegin()); pos.setEnd(token.getEnd());
 						Class c = pos.getClass();         
 	                	if (c.equals(PennPOSTag.class))
