@@ -7,7 +7,7 @@
  *
  * Author: buyko
  * 
- * Current version: 1.0	
+ * Current version: 1.1	
  * Since version:   1.0
  *
  * Creation date: 30.11.2006 
@@ -28,14 +28,14 @@ import opennlp.tools.lang.english.PosTagger;
 import opennlp.tools.ngram.Dictionary;
 import opennlp.tools.postag.POSDictionary;
 
-import com.ibm.uima.UimaContext;
-import com.ibm.uima.analysis_component.JCasAnnotator_ImplBase;
-import com.ibm.uima.cas.CASRuntimeException;
-import com.ibm.uima.cas.FSIterator;
-import com.ibm.uima.cas.text.AnnotationIndex;
-import com.ibm.uima.jcas.cas.FSArray;
-import com.ibm.uima.jcas.impl.JCas;
-import com.ibm.uima.resource.ResourceInitializationException;
+import org.apache.uima.UimaContext;
+import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
+import org.apache.uima.cas.CASRuntimeException;
+import org.apache.uima.cas.FSIterator;
+import org.apache.uima.cas.text.AnnotationIndex;
+import org.apache.uima.jcas.cas.FSArray;
+import org.apache.uima.jcas.JCas;
+import org.apache.uima.resource.ResourceInitializationException;
 
 import de.julielab.jules.types.GeniaPOSTag;
 import de.julielab.jules.types.POSTag;
