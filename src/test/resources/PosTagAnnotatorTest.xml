@@ -4,16 +4,16 @@
 <primitive>true</primitive>
 <annotatorImplementationName>de.julielab.jules.ae.opennlp.PosTagAnnotator</annotatorImplementationName>
 <analysisEngineMetaData>
-<name>OpennlpPosTagger</name>
+<name>jules-opennlp-postag-ae</name>
 <description></description>
-<version>1.0</version>
+<version>1.1.1</version>
 <vendor></vendor>
 <configurationParameters>
 <configurationParameter>
 <name>modelFile</name>
 <type>String</type>
 <multiValued>false</multiValued>
-<mandatory>false</mandatory>
+<mandatory>true</mandatory>
 </configurationParameter>
 <configurationParameter>
 <name>tagset</name>
@@ -25,7 +25,7 @@
 <name>language</name>
 <type>String</type>
 <multiValued>false</multiValued>
-<mandatory>false</mandatory>
+<mandatory>true</mandatory>
 </configurationParameter>
 <configurationParameter>
 <name>tagDict</name>
@@ -43,7 +43,7 @@
 <name>useTagdict</name>
 <type>Boolean</type>
 <multiValued>false</multiValued>
-<mandatory>false</mandatory>
+<mandatory>true</mandatory>
 </configurationParameter>
 </configurationParameters>
 <configurationParameterSettings>
@@ -62,7 +62,7 @@
 <nameValuePair>
 <name>modelFile</name>
 <value>
-<string>/src/test/resources/Tagger_PennBio.bin.gz</string>
+<string>src/test/resources/POSTagPennBioIE.bin.gz</string>
 </value>
 </nameValuePair>
 <nameValuePair>
@@ -80,7 +80,7 @@
 <nameValuePair>
 <name>tagDict</name>
 <value>
-<string>/src/test/resources/tagdictPennBioIE</string>
+<string>src/test/resources/tagdictPennBioIE</string>
 </value>
 </nameValuePair>
 </configurationParameterSettings>

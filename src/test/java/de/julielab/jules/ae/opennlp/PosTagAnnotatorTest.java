@@ -7,7 +7,7 @@
  *
  * Author: buyko
  * 
- * Current version: 1.1
+ * Current version: 1.1.1
  * Since version:   1.0
  *
  * Creation date: 08.12.2006 
@@ -19,6 +19,8 @@ package de.julielab.jules.ae.opennlp;
 
 import java.util.Iterator;
 
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngine;
 import org.apache.uima.jcas.JFSIndexRepository;
@@ -34,9 +36,19 @@ import junit.framework.TestCase;
 
 public class PosTagAnnotatorTest extends TestCase {
 
-	String text = "A study on the Prethcamide";
-	String postags = "hm;NN;IN;DT;NN;";
+	private static final Logger LOGGER = Logger
+	.getLogger(PosTagAnnotatorTest.class);
+	
+	private static final String LOGGER_PROPERTIES = "src/test/java/log4j.properties";
 
+	String text = "A study on the Prethcamide";
+	String postags = "DT;NN;IN;DT;NN;";
+
+	protected void setUp() throws Exception {
+		super.setUp();
+		// set log4j properties file
+		PropertyConfigurator.configure(LOGGER_PROPERTIES);
+	}
       
 	public void initCas(JCas jcas) {
 		
@@ -49,7 +61,7 @@ public class PosTagAnnotatorTest extends TestCase {
 		Token t1 = new Token(jcas);
 		t1.setBegin(0); t1.setEnd(1); t1.addToIndexes();
 		PennBioIEPOSTag pos = new PennBioIEPOSTag(jcas);
-		pos.setValue("hm");
+		pos.setValue("DT");
 		pos.addToIndexes();
 		FSArray postags = new FSArray(jcas, 10);
 		postags.set(0, pos);
@@ -83,7 +95,7 @@ public class PosTagAnnotatorTest extends TestCase {
 			posAnnotator = UIMAFramework
 					.produceAnalysisEngine(posSpec);
 		} catch (Exception e) {
-			e.printStackTrace();
+			LOGGER.error("[testProcess]" + e.getMessage());
 		}
 
 
@@ -91,7 +103,7 @@ public class PosTagAnnotatorTest extends TestCase {
 			try {
 				jcas = posAnnotator.newJCas();
 			} catch (ResourceInitializationException e) {
-				e.printStackTrace();
+				LOGGER.error("[testProcess]" + e.getMessage());
 			}
 
 			// get test cas with sentence annotation
@@ -100,7 +112,7 @@ public class PosTagAnnotatorTest extends TestCase {
 			try {
 				posAnnotator.process(jcas, null);
 			} catch (Exception e) {
-				e.printStackTrace();
+				LOGGER.error("[testProcess]" + e.getMessage());
 			}
 
 			// get the offsets of the sentences
@@ -119,7 +131,7 @@ public class PosTagAnnotatorTest extends TestCase {
 				predictedPOSTags = predictedPOSTags+ tag.getValue() + ";";			
 				
 			}
-			System.out.println("Wanted:" + postags + "\n Predicted" + predictedPOSTags);
+			LOGGER.debug("[testProcess]" + "\n Wanted: " + postags + "\n Predicted: " + predictedPOSTags);
 
 			// compare offsets
 			if (!predictedPOSTags.equals(postags)) {

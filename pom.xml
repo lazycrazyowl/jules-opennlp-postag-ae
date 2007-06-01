@@ -7,7 +7,7 @@
 	<groupId>de.julielab</groupId>
 	<artifactId>jules-opennlp-postag-ae</artifactId>
 	<packaging>jar</packaging>
-	<version>1.1</version>
+	<version>1.1.1</version>
 	<description>Wrapper for OpenNLP POS Tagger</description>
 	
 	<parent>
@@ -47,5 +47,10 @@
 			<artifactId>ant-optional</artifactId>
 			<version>1.5.3-1</version>
     		</dependency>
+    	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.14</version>
+	</dependency>
 	</dependencies>
 </project>

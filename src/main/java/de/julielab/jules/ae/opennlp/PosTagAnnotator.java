@@ -7,7 +7,7 @@
  *
  * Author: buyko
  * 
- * Current version: 1.1	
+ * Current version: 1.1.1
  * Since version:   1.0
  *
  * Creation date: 30.11.2006 
@@ -28,6 +28,7 @@ import opennlp.tools.lang.english.PosTagger;
 import opennlp.tools.ngram.Dictionary;
 import opennlp.tools.postag.POSDictionary;
 
+import org.apache.log4j.Logger;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.cas.CASRuntimeException;
@@ -47,6 +48,12 @@ import de.julielab.jules.utility.AnnotationTools;
 import de.julielab.jules.utility.JulesTools;
 
 public class PosTagAnnotator extends JCasAnnotator_ImplBase {
+	
+	/**
+	 * Logger for this class
+	 */
+	private static final Logger LOGGER = Logger
+	.getLogger(PosTagAnnotator.class);
 	
 	/**
 	 * component Id
@@ -91,7 +98,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
 
         try {
         	
-        	System.out.println("initializing OpenNLP POSTag Annotator ...");
+        	LOGGER.info("[OpenNLP POSTag Annotator]initializing OpenNLP POSTag Annotator ...");
             // Get configuration parameter values
             String modelFile = (String) aContext.getConfigParameterValue("modelFile");
             postagset = (String) aContext.getConfigParameterValue("tagset");
@@ -102,10 +109,12 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
             
             //Get OpenNLP POS Tagger, initialize with a model
             if(useTagdict)
-            	tagger = new PosTagger(System.getProperty("user.dir") + modelFile, (Dictionary)null, new POSDictionary(System.getProperty("user.dir") + tagdict,caseSensitive));
+            	tagger = new PosTagger(modelFile, (Dictionary)null, new POSDictionary(tagdict,caseSensitive));
             else 
-            	tagger = new PosTagger(System.getProperty("user.dir") + modelFile, (Dictionary)null);
+            	tagger = new PosTagger(modelFile, (Dictionary)null);
         } catch (Exception e) {
+        	LOGGER.error("[OpenNLP POStag Annotator] Could not load Part-of-speech model: "
+					+ e.getMessage());
             throw new ResourceInitializationException(e);
         }
     }
@@ -114,7 +123,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
     public void process(JCas aJCas) {
 		
 		
-		System.out.println("OpenNLP POSTag Annotator:  processing next document ...");
+		LOGGER.info("[OpenNLP POSTag Annotator]  processing document ...");
         ArrayList<Token> tokenList = new ArrayList<Token>();
         ArrayList<String> tokenTextList = new ArrayList<String>();
 
@@ -162,38 +171,30 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
 	                    
 	                	
 					} catch (SecurityException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						LOGGER.error("[OpenNLP POSTag Annotator]" + e1.getMessage());
 					} catch (IllegalArgumentException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						LOGGER.error("[OpenNLP POSTag Annotator]" + e1.getMessage());
 					} catch (ClassNotFoundException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						LOGGER.error("[OpenNLP POSTag Annotator]" + e1.getMessage());
 					} catch (NoSuchMethodException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						LOGGER.error("[OpenNLP POSTag Annotator]" + e1.getMessage());
 					} catch (InstantiationException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						LOGGER.error("[OpenNLP POSTag Annotator]" + e1.getMessage());
 					} catch (IllegalAccessException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						LOGGER.error("[OpenNLP POSTag Annotator]" + e1.getMessage());
 					} catch (InvocationTargetException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						LOGGER.error("[OpenNLP POSTag Annotator]" + e1.getMessage());
 					}
            
                     
-              
+     
                     FSArray postags;
                     if (token.getPosTag()==null){                    	
                     	postags = new FSArray (aJCas, 1);
                     	try {
                     		postags.set(0, pos);
 						} catch (CASRuntimeException e) {
-							// TODO Auto-generated catch block
-							e.printStackTrace();
+							LOGGER.error("[OpenNLP POSTag Annotator]" + e.getMessage());
 						}
                     	postags.addToIndexes();
                     	token.setPosTag(postags);
@@ -209,8 +210,8 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
                    
                 }
             } catch (CASRuntimeException e) {
-            	System.out.println(e.getMessage());
-            	System.err.println("POS tagger error - list of tags shorter than list of words");
+            	LOGGER.error("[OpenNLP POSTag Annotator]" + e.getMessage());
+            	LOGGER.error("[OpenNLP POSTag Annotator]  list of tags shorter than list of words");
             }
         }
     }
