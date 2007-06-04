@@ -156,15 +156,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
                     try {
 						pos = (POSTag) AnnotationTools.getAnnotationByClassName(aJCas, postagset);
 						pos.setBegin(token.getBegin()); pos.setEnd(token.getEnd());
-						Class c = pos.getClass();         
-	                	if (c.equals(PennPOSTag.class))
-	                		((PennPOSTag)pos).setValue(posTag);
-	                	if (c.equals(PennBioIEPOSTag.class))
-	                		((PennBioIEPOSTag)pos).setValue(posTag);
-	                	if (c.equals(GeniaPOSTag.class))
-	                		((GeniaPOSTag)pos).setValue(posTag);
-	                	
-
+						pos.setValue(posTag);
 	                    pos.setComponentId(COMPONENT_ID);
 	                    pos.setLanguage(language);
 	                    pos.addToIndexes();
