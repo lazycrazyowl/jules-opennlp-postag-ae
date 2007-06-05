@@ -12,7 +12,7 @@
  *
  * Creation date: 08.12.2006 
  * 
- * //TODO insert short description
+ * Test for OpenNLP POS Tagger
  **/
 
 package de.julielab.jules.ae.opennlp;
