@@ -7,10 +7,10 @@
  *
  * Author: buyko
  * 
- * Current version: 1.1.1
+ * Current version: 2.0
  * Since version:   1.0
  *
- * Creation date: 08.12.2006 
+ * Creation date: 30.01.2008 
  * 
  * Test for OpenNLP POS Tagger
  **/

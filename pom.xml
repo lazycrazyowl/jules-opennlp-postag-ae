@@ -7,21 +7,19 @@
 	<groupId>de.julielab</groupId>
 	<artifactId>jules-opennlp-postag-ae</artifactId>
 	<packaging>jar</packaging>
-	<version>1.2</version>
-	<description>Wrapper for OpenNLP POS Tagger</description>
-	
+	<version>2.0</version>
+	<description>Wrapper for OpenNLP POS Tagger</description>	
 	<parent>
 		<groupId>de.julielab</groupId>
 		<artifactId>jules</artifactId>
 		<version>1.0</version>
-	</parent>	
-	
+	</parent>		
 	<dependencies>
 		<dependency>
-			<groupId>de.julielab</groupId>
-			<artifactId>jules-types</artifactId>
-			<version>1.7</version>
-		</dependency>
+       	 	<groupId>org.apache.uima</groupId> 
+       	 	<artifactId>uimaj-core</artifactId> 
+        	<version>2.2.0-incubating</version> 
+   	 </dependency>
 		<dependency>
 			<groupId>de.julielab</groupId>
 			<artifactId>jules-utilities</artifactId>

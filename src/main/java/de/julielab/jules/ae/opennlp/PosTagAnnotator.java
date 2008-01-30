@@ -7,10 +7,10 @@
  *
  * Author: buyko
  * 
- * Current version: 1.1.1
+ * Current version: 2.0
  * Since version:   1.0
  *
- * Creation date: 30.11.2006 
+ * Creation date: 30.01.2008
  * 
  * Analysis Engine that invokes the OpenNLP POS Tagger. This annotator assumes that
  * sentences and tokens have been annotated in the CAS. We iterate over sentences, 
@@ -67,10 +67,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
 	 */
 	private String postagset;
 
-	/**
-	 * the language of the text of analysis
-	 */
-	private String language;
+
 
 	/**
 	 * true if a tag dictionary should be used, please consider data fields
@@ -102,7 +99,6 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
 			String modelFile = (String) aContext
 					.getConfigParameterValue("modelFile");
 			postagset = (String) aContext.getConfigParameterValue("tagset");
-			language = (String) aContext.getConfigParameterValue("language");
 			useTagdict = (Boolean) aContext
 					.getConfigParameterValue("useTagdict");
 			tagdict = (String) aContext.getConfigParameterValue("tagDict");
@@ -165,7 +161,6 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
 						pos.setEnd(token.getEnd());
 						pos.setValue(posTag);
 						pos.setComponentId(COMPONENT_ID);
-						pos.setLanguage(language);
 						pos.addToIndexes();
 
 					} catch (SecurityException e1) {
