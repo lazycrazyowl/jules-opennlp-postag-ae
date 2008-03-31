@@ -2,7 +2,7 @@
 <typeSystemDescription xmlns="http://uima.apache.org/resourceSpecifier">
   <name>julie-morpho-syntax-types</name>
   <description>The type system contains types for the annotation of morpho-syntactic and syntactic analysis (constituncy-based and dependecy-based parsing) results.</description>
-  <version>2.0</version>
+  <version>2.1</version>
   <vendor/>
   <imports>
     <import location="julie-basic-types.xml"/>
@@ -126,6 +126,16 @@
           <name>expan</name>
           <description>The full form of an abbreviation. For example he fullform, for example for HLA (human leukocyte antigen), O</description>
           <rangeTypeName>uima.cas.String</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>textReference</name>
+          <description>Reference to the text span that contains the  full form of the abbreviation/acronym</description>
+          <rangeTypeName>de.julielab.jules.types.Annotation</rangeTypeName>
+        </featureDescription>
+        <featureDescription>
+          <name>definedHere</name>
+          <description>The definedHere is true if the abbreviation/acronym is defined for the first time in the text, e.g. in "interleukin 2 (Il-2) receptor", it can be true only for locally introduced abbreviations/acronyms.</description>
+          <rangeTypeName>uima.cas.Boolean</rangeTypeName>
         </featureDescription>
       </features>
     </typeDescription>
