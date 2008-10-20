@@ -195,7 +195,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
 							LOGGER.error("[OpenNLP POSTag Annotator]"
 									+ e.getMessage());
 						}
-						postags.addToIndexes();
+				
 						token.setPosTag(postags);
 
 					}
