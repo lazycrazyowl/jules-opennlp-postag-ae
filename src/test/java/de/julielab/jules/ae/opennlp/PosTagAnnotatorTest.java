@@ -19,35 +19,37 @@ package de.julielab.jules.ae.opennlp;
 
 import java.util.Iterator;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import junit.framework.TestCase;
+
 import org.apache.uima.UIMAFramework;
 import org.apache.uima.analysis_engine.AnalysisEngine;
+import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.JFSIndexRepository;
 import org.apache.uima.jcas.cas.FSArray;
-import org.apache.uima.jcas.JCas;
 import org.apache.uima.resource.ResourceInitializationException;
 import org.apache.uima.resource.ResourceSpecifier;
 import org.apache.uima.util.XMLInputSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import de.julielab.jules.types.PennBioIEPOSTag;
 import de.julielab.jules.types.Sentence;
 import de.julielab.jules.types.Token;
-import junit.framework.TestCase;
 
 public class PosTagAnnotatorTest extends TestCase {
 
-	private static final Logger LOGGER = Logger
-	.getLogger(PosTagAnnotatorTest.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PosTagAnnotatorTest.class);
 	
-	private static final String LOGGER_PROPERTIES = "src/test/java/log4j.properties";
-
 	String text = "A study on the Prethcamide";
 	String postags = "DT;NN;IN;DT;NN;";
 
 	protected void setUp() throws Exception {
-		super.setUp();
-		// set log4j properties file
-		PropertyConfigurator.configure(LOGGER_PROPERTIES);
+		// You should just use a logback-test.xml instead
+		// Old:
+//		super.setUp();
+//		// set log4j properties file
+//		PropertyConfigurator.configure(LOGGER_PROPERTIES);
+		
 	}
       
 	public void initCas(JCas jcas) {

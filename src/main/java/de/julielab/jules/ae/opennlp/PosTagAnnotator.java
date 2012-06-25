@@ -29,7 +29,6 @@ import opennlp.tools.lang.english.PosTagger;
 import opennlp.tools.ngram.Dictionary;
 import opennlp.tools.postag.POSDictionary;
 
-import org.apache.log4j.Logger;
 import org.apache.uima.UimaContext;
 import org.apache.uima.analysis_component.JCasAnnotator_ImplBase;
 import org.apache.uima.cas.CASRuntimeException;
@@ -38,6 +37,8 @@ import org.apache.uima.cas.text.AnnotationIndex;
 import org.apache.uima.jcas.JCas;
 import org.apache.uima.jcas.cas.FSArray;
 import org.apache.uima.resource.ResourceInitializationException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import de.julielab.jules.types.POSTag;
 import de.julielab.jules.types.Sentence;
@@ -48,8 +49,7 @@ public class PosTagAnnotator extends JCasAnnotator_ImplBase {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger LOGGER = Logger
-	.getLogger(PosTagAnnotator.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(PosTagAnnotator.class);
 
 	/**
 	 * component Id
