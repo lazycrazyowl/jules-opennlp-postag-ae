@@ -13,6 +13,15 @@
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<includes>
+					<include>jules-opennlp-postag-ae.xml</include>
+				</includes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
