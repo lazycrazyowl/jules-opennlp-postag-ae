@@ -74,7 +74,7 @@
 </configurationParameterSettings>
 <typeSystemDescription>
 <imports>
-<import location="../../main/resources/julie-morpho-syntax-types.xml"/>
+<import name="julie-morpho-syntax-types"/>
 </imports>
 </typeSystemDescription>
 <typePriorities/>
